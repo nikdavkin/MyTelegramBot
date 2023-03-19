@@ -1,15 +1,15 @@
-package parsers;
+package ru.tinkoff.edu.java.linkparser.parsers;
 
-import org.example.results.GitHubResult;
+import ru.tinkoff.edu.java.linkparser.results.GitHubResult;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class GitHubParser implements Parser {
+    private static final Pattern pattern = Pattern.compile("^https://github[.]com/(\\S+)/(\\S+)/$");
+
     @Override
     public GitHubResult parse(String URL) {
-        String regex = "^https://github[.]com/(\\S+)/(\\S+)/$";
-        Pattern pattern = Pattern.compile(regex);
         Matcher match = pattern.matcher(URL);
         if (!match.matches()) return null;
         String user = match.group(1);

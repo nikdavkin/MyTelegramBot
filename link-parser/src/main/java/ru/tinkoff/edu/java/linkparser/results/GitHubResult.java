@@ -1,6 +1,4 @@
-package org.example.results;
-
-import org.example.results.ParseResult;
+package ru.tinkoff.edu.java.linkparser.results;
 
 public record GitHubResult(String user, String repo) implements ParseResult {
 }
