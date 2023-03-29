@@ -1,10 +1,10 @@
 package ru.tinkoff.edu.java.scrapper.controllers;
 
 import org.springframework.web.bind.annotation.*;
-import ru.tinkoff.edu.java.scrapper.dto.AddLinkRequest;
-import ru.tinkoff.edu.java.scrapper.dto.LinkResponse;
-import ru.tinkoff.edu.java.scrapper.dto.ListLinksResponse;
-import ru.tinkoff.edu.java.scrapper.dto.RemoveLinkRequest;
+import ru.tinkoff.edu.java.scrapper.dto.requests.AddLinkRequest;
+import ru.tinkoff.edu.java.scrapper.dto.responses.LinkResponse;
+import ru.tinkoff.edu.java.scrapper.dto.responses.ListLinksResponse;
+import ru.tinkoff.edu.java.scrapper.dto.requests.RemoveLinkRequest;
 
 @RestController
 @RequestMapping("/links")
