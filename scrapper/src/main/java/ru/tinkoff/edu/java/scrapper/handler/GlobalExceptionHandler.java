@@ -17,19 +17,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = HttpClientErrorException.BadRequest.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ApiErrorResponse> handleBadRequestException(Exception exception) {
-        return new ResponseEntity<>(new ApiErrorResponse("Error! Bad request",
-                "400",
-                exception.toString(),
-                exception.getMessage(),
-                Arrays.stream(exception.getStackTrace()).map(Objects::toString).toList()),
-                HttpStatus.BAD_REQUEST);
+        return handleException("Error! Bad request!", "400", exception);
     }
 
     @ExceptionHandler(value = HttpClientErrorException.NotFound.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ResponseEntity<ApiErrorResponse> handleNotFoundException(Exception exception) {
-        return new ResponseEntity<>(new ApiErrorResponse("Error! Not found",
-                "404",
+        return handleException("Error! Not found!", "404", exception);
+    }
+
+    private ResponseEntity<ApiErrorResponse> handleException(String description, String code, Exception exception) {
+        return new ResponseEntity<>(new ApiErrorResponse(description,
+                code,
                 exception.toString(),
                 exception.getMessage(),
                 Arrays.stream(exception.getStackTrace()).map(Objects::toString).toList()),
