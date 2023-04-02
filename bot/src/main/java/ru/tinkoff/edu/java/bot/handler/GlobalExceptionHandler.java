@@ -1,4 +1,4 @@
-package ru.tinkoff.edu.java.bot;
+package ru.tinkoff.edu.java.bot.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +17,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = HttpClientErrorException.BadRequest.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<ApiErrorResponse> handleBadRequestException(Exception exception) {
-        return new ResponseEntity<>(new ApiErrorResponse("Error! Bad request",
-                "400",
+        return handleException("Error! Bad request!", "400", exception);
+    }
+
+    private ResponseEntity<ApiErrorResponse> handleException(String description, String code, Exception exception) {
+        return new ResponseEntity<>(new ApiErrorResponse(description,
+                code,
                 exception.toString(),
                 exception.getMessage(),
                 Arrays.stream(exception.getStackTrace()).map(Objects::toString).toList()),
-                HttpStatus.BAD_REQUEST);
+                HttpStatus.NOT_FOUND);
     }
 }
