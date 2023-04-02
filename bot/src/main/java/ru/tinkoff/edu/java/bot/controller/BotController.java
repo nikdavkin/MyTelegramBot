@@ -8,7 +8,7 @@ import ru.tinkoff.edu.java.bot.dto.LinkUpdateRequest;
 @RestController
 public class BotController {
 
-    @PostMapping(path = "/updates", produces = "application/json")
+    @PostMapping(path = "/updates", produces = "application/json", consumes = "application/json")
     public String sendUpdate(@RequestBody LinkUpdateRequest linkUpdateRequest) {
         return null;
     }
